@@ -23,42 +23,42 @@ import ThemeSwitcher from "../components/ThemeSwitcher.astro";
             }
 
             body.light-theme {
-                background-color: #fdfdfd;
+                background-color: #f8f8f8;
                 background: linear-gradient(
                     135deg,
-                    #fdfdfd 0%,
-                    #f5f5dc 50%,
-                    #eaeaea 100%
+                    #f8f8f8 0%,
+                    #f5e8e8 50%,
+                    #f0d8d8 100%
                 );
             }
 
             body.dark-theme {
-                background-color: #121212;
+                background-color: #1a1a1a;
                 background: linear-gradient(
                     135deg,
-                    #121212 0%,
-                    #1a1a1a 50%,
-                    #2a2a2a 100%
+                    #1a1a1a 0%,
+                    #2a1a1a 50%,
+                    #4a1a1a 100%
                 );
             }
 
             html.dark body {
-                background-color: #121212;
+                background-color: #1a1a1a;
                 background: linear-gradient(
                     135deg,
-                    #121212 0%,
-                    #1a1a1a 50%,
-                    #2a2a2a 100%
+                    #1a1a1a 0%,
+                    #2a1a1a 50%,
+                    #4a1a1a 100%
                 );
             }
 
             html:not(.dark) body {
-                background-color: #fdfdfd;
+                background-color: #f8f8f8;
                 background: linear-gradient(
                     135deg,
-                    #fdfdfd 0%,
-                    #f5f5dc 50%,
-                    #eaeaea 100%
+                    #f8f8f8 0%,
+                    #f5e8e8 50%,
+                    #f0d8d8 100%
                 );
             }
         </style>
