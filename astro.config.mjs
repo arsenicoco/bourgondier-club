@@ -5,6 +5,6 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind()],
-  site: "https://arsenicoco.github.io",
-  base: "/bourgondier-club",
+  site: "https://club.bourgondier.wine",
+  base: "/",
 });
