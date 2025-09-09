@@ -1,0 +1,43 @@
+<nav class="text-center py-4">
+    <div class="flex flex-wrap gap-6 justify-center items-center text-sm">
+        <a
+            href="#organizers"
+            class="nav-link text-primary dark:text-white hover:text-primary/70 dark:hover:text-white/70 transition-colors duration-200 underline underline-offset-4 decoration-1 hover:decoration-2"
+        >
+            Организаторы
+        </a>
+        <span class="text-primary/50 dark:text-white/30">•</span>
+        <a
+            href="#tastings"
+            class="nav-link text-primary dark:text-white hover:text-primary/70 dark:hover:text-white/70 transition-colors duration-200 underline underline-offset-4 decoration-1 hover:decoration-2"
+        >
+            Расписание встреч
+        </a>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        navLinks.forEach((link) => {
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                const targetId = (e.target as HTMLAnchorElement).getAttribute(
+                    "href",
+                );
+                if (targetId) {
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>
