@@ -5,6 +5,7 @@ import CallToAction from "../components/CallToAction.astro";
 import Organizers from "../components/Organizers.astro";
 import Tastings from "../components/Tastings.astro";
 import Navigation from "../components/Navigation.astro";
+import JoinClubForm from "../components/JoinClubForm.astro";
 ---
 
 <Layout>
@@ -18,6 +19,9 @@ import Navigation from "../components/Navigation.astro";
             <CallToAction />
             <Organizers />
             <Tastings />
+            <section id="signup" class="mt-12">
+                <JoinClubForm />
+            </section>
         </main>
     </div>
 </Layout>
