@@ -1,0 +1,99 @@
+---
+import "../../styles/tailwind.css";
+import ThemeSwitcher from "../../components/ThemeSwitcher.astro";
+import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Wine Tasting Club "Bourgondier Weekly"</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Noto+Serif+Display&display=swap"
+            rel="stylesheet"
+        />
+        <style is:global>
+            body {
+                transition: background-color 0.3s ease;
+            }
+
+            body.light-theme {
+                background-color: #f8f8f8;
+                background: linear-gradient(
+                    135deg,
+                    #f8f8f8 0%,
+                    #f5e8e8 50%,
+                    #f0d8d8 100%
+                );
+            }
+
+            body.dark-theme {
+                background-color: #1a1a1a;
+                background: linear-gradient(
+                    135deg,
+                    #1a1a1a 0%,
+                    #2a1a1a 50%,
+                    #4a1a1a 100%
+                );
+            }
+
+            html.dark body {
+                background-color: #1a1a1a;
+                background: linear-gradient(
+                    135deg,
+                    #1a1a1a 0%,
+                    #2a1a1a 50%,
+                    #4a1a1a 100%
+                );
+            }
+
+            html:not(.dark) body {
+                background-color: #f8f8f8;
+                background: linear-gradient(
+                    135deg,
+                    #f8f8f8 0%,
+                    #f5e8e8 50%,
+                    #f0d8d8 100%
+                );
+            }
+        </style>
+
+        <script is:inline>
+            function updateTheme() {
+                const isDark = localStorage.getItem("theme") === "dark";
+
+                if (isDark) {
+                    document.documentElement.classList.add("dark");
+                    document.body.classList.remove("light-theme");
+                    document.body.classList.add("dark-theme");
+                } else {
+                    document.documentElement.classList.remove("dark");
+                    document.body.classList.remove("dark-theme");
+                    document.body.classList.add("light-theme");
+                }
+            }
+
+            // Apply theme immediately, defaulting to light if no preference set
+            if (!localStorage.getItem("theme")) {
+                localStorage.setItem("theme", "light");
+            }
+            updateTheme();
+
+            // Set language to English on load
+            localStorage.setItem("language", "en");
+        </script>
+    </head>
+    <body class="min-h-screen">
+        <div class="absolute top-4 right-4 z-10 flex gap-2">
+            <LanguageSwitcher />
+            <ThemeSwitcher />
+        </div>
+        <slot />
+    </body>
+</html>

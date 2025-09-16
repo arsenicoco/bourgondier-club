@@ -1,0 +1,81 @@
+<div
+    class="flex gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg p-1 shadow-lg"
+>
+    <button
+        id="ru-lang-btn"
+        class="px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
+        title="Русский"
+    >
+        RU
+    </button>
+    <button
+        id="en-lang-btn"
+        class="px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
+        title="English"
+    >
+        EN
+    </button>
+</div>
+
+<script>
+    const ruBtn = document.getElementById(
+        "ru-lang-btn",
+    ) as HTMLButtonElement | null;
+    const enBtn = document.getElementById(
+        "en-lang-btn",
+    ) as HTMLButtonElement | null;
+
+    function updateActiveButton() {
+        const lang = localStorage.getItem("language") || "ru";
+
+        // Remove active state from all buttons
+        [ruBtn, enBtn].forEach((btn) => {
+            if (btn) {
+                btn.classList.remove(
+                    "bg-primary",
+                    "text-white",
+                    "dark:bg-dark-primary",
+                );
+            }
+        });
+
+        // Add active state to current language button
+        if (lang === "ru" && ruBtn) {
+            ruBtn.classList.add(
+                "bg-primary",
+                "text-white",
+                "dark:bg-dark-primary",
+            );
+        } else if (enBtn) {
+            enBtn.classList.add(
+                "bg-primary",
+                "text-white",
+                "dark:bg-dark-primary",
+            );
+        }
+    }
+
+    function switchLanguage(lang: string) {
+        localStorage.setItem("language", lang);
+        if (lang === "en") {
+            window.location.href = "/en/";
+        } else {
+            window.location.href = "/";
+        }
+    }
+
+    // Initialize active button state
+    updateActiveButton();
+
+    if (ruBtn) {
+        ruBtn.addEventListener("click", () => {
+            switchLanguage("ru");
+        });
+    }
+
+    if (enBtn) {
+        enBtn.addEventListener("click", () => {
+            switchLanguage("en");
+        });
+    }
+</script>
