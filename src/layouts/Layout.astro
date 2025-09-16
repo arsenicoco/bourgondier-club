@@ -1,6 +1,7 @@
 ---
 import "../styles/tailwind.css";
 import ThemeSwitcher from "../components/ThemeSwitcher.astro";
+import LanguageSwitcher from "../components/LanguageSwitcher.astro";
 ---
 
 <!doctype html>
@@ -83,10 +84,14 @@ import ThemeSwitcher from "../components/ThemeSwitcher.astro";
                 localStorage.setItem("theme", "light");
             }
             updateTheme();
+
+            // Set language to Russian on load
+            localStorage.setItem("language", "ru");
         </script>
     </head>
     <body class="min-h-screen">
-        <div class="absolute top-4 right-4 z-10">
+        <div class="absolute top-4 right-4 z-10 flex gap-2">
+            <LanguageSwitcher />
             <ThemeSwitcher />
         </div>
         <slot />
