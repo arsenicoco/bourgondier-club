@@ -1,14 +1,17 @@
 import Stripe from 'stripe';
 
-const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2024-12-18.acacia',
 });
 
-export async function POST({ request }) {
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
   try {
     // Load available dates from the dates.json file
-    const datesResponse = await fetch(`${import.meta.env.SITE_URL}/dates.json`);
+    const datesResponse = await fetch(`${process.env.SITE_URL}/dates.json`);
     const datesData = await datesResponse.json();
     
     // Format dates for Stripe dropdown options (English)
@@ -50,8 +53,8 @@ export async function POST({ request }) {
         },
       ],
       mode: 'payment',
-      success_url: `${import.meta.env.SITE_URL}/en/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${import.meta.env.SITE_URL}/en/`,
+      success_url: `${process.env.SITE_URL}/en/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.SITE_URL}/en/`,
       metadata: {
         date_mapping: JSON.stringify(dateMapping)
       },
@@ -70,15 +73,9 @@ export async function POST({ request }) {
       ]
     });
 
-    return new Response(JSON.stringify({ url: session.url }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(200).json({ url: session.url });
   } catch (error) {
     console.error('Error creating checkout session:', error);
-    return new Response(JSON.stringify({ error: 'Failed to create checkout session' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(500).json({ error: 'Failed to create checkout session' });
   }
 }

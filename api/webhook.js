@@ -1,18 +1,19 @@
 import Stripe from 'stripe';
 
-const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2024-12-18.acacia',
 });
 
-export async function POST({ request }) {
-  const body = await request.text();
-  const signature = request.headers.get('stripe-signature');
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  const body = JSON.stringify(req.body);
+  const signature = req.headers['stripe-signature'];
 
   if (!signature) {
-    return new Response(JSON.stringify({ error: 'No signature' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(400).json({ error: 'No signature' });
   }
 
   let event;
@@ -21,14 +22,11 @@ export async function POST({ request }) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      import.meta.env.STRIPE_WEBHOOK_SECRET
+      process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (err) {
     console.error('Webhook signature verification failed:', err);
-    return new Response(JSON.stringify({ error: 'Webhook signature verification failed' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(400).json({ error: 'Webhook signature verification failed' });
   }
 
   if (event.type === 'checkout.session.completed') {
@@ -56,8 +54,5 @@ export async function POST({ request }) {
     }
   }
 
-  return new Response(JSON.stringify({ received: true }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  });
+  return res.status(200).json({ received: true });
 }

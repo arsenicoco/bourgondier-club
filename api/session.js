@@ -1,21 +1,22 @@
 import Stripe from 'stripe';
 
-const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2024-12-18.acacia',
 });
 
-export async function GET({ url }) {
-  const sessionId = url.searchParams.get('session_id');
+export default async function handler(req, res) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-  if (!sessionId) {
-    return new Response(JSON.stringify({ error: 'Session ID required' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+  const { session_id } = req.query;
+
+  if (!session_id) {
+    return res.status(400).json({ error: 'Session ID required' });
   }
 
   try {
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    const session = await stripe.checkout.sessions.retrieve(session_id);
     
     // Get the custom field value and map it to actual date
     const tastingDateKey = session.custom_fields?.find(
@@ -28,21 +29,15 @@ export async function GET({ url }) {
       selectedDate = dateMapping[tastingDateKey];
     }
 
-    return new Response(JSON.stringify({
+    return res.status(200).json({
       customer_email: session.customer_details?.email,
       amount_total: session.amount_total,
       currency: session.currency,
       payment_status: session.payment_status,
       selected_date: selectedDate
-    }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
     console.error('Error retrieving session:', error);
-    return new Response(JSON.stringify({ error: 'Failed to retrieve session' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(500).json({ error: 'Failed to retrieve session' });
   }
 }
