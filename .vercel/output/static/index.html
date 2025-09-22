@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="ru"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.13.5"><title>Клуб винных встреч "Bourgondier Weekly"</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Noto+Serif+Display&display=swap" rel="stylesheet"><script>
+            function updateTheme() {
+                const isDark = localStorage.getItem("theme") === "dark";
+
+                if (isDark) {
+                    document.documentElement.classList.add("dark");
+                    document.body.classList.remove("light-theme");
+                    document.body.classList.add("dark-theme");
+                } else {
+                    document.documentElement.classList.remove("dark");
+                    document.body.classList.remove("dark-theme");
+                    document.body.classList.add("light-theme");
+                }
+            }
+
+            // Apply theme immediately, defaulting to light if no preference set
+            if (!localStorage.getItem("theme")) {
+                localStorage.setItem("theme", "light");
+            }
+            updateTheme();
+
+            // Set language to Russian on load
+            localStorage.setItem("language", "ru");
+        </script><link rel="stylesheet" href="/_astro/admin.CrInjWwt.css">
+<style>body{transition:background-color .3s ease}body.light-theme{background-color:#f8f8f8;background:linear-gradient(135deg,#f8f8f8,#f5e8e8,#f0d8d8)}body.dark-theme,html.dark body{background-color:#1a1a1a;background:linear-gradient(135deg,#1a1a1a,#2a1a1a,#4a1a1a)}html:not(.dark) body{background-color:#f8f8f8;background:linear-gradient(135deg,#f8f8f8,#f5e8e8,#f0d8d8)}
+</style></head> <body class="min-h-screen"> <div class="absolute top-4 right-4 z-10 flex gap-2"> <div class="flex gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg p-1 shadow-lg"> <button id="ru-lang-btn" class="px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300" title="Русский">
+RU
+</button> <button id="en-lang-btn" class="px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300" title="English">
+EN
+</button> </div> <script type="module">const e=document.getElementById("ru-lang-btn"),t=document.getElementById("en-lang-btn");function i(){const a=localStorage.getItem("language")||"ru";[e,t].forEach(n=>{n&&n.classList.remove("bg-primary","text-white","dark:bg-dark-primary")}),a==="ru"&&e?e.classList.add("bg-primary","text-white","dark:bg-dark-primary"):t&&t.classList.add("bg-primary","text-white","dark:bg-dark-primary")}function r(a){localStorage.setItem("language",a),a==="en"?window.location.href="/en/":window.location.href="/"}i();e&&e.addEventListener("click",()=>{r("ru")});t&&t.addEventListener("click",()=>{r("en")});</script> <div class="flex gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg p-1 shadow-lg"> <button id="light-theme-btn" class="px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300" title="Light mode"> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"> <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"></path> </svg> </button> <button id="dark-theme-btn" class="px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300" title="Dark mode"> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"> <path d="M12.1 22c-5.5 0-10-4.5-10-10s4.5-10 10-10c1.8 0 3.5.5 4.9 1.3.4.2.6.7.4 1.1-.2.4-.7.6-1.1.4-1-.6-2.2-.9-3.4-.9-3.9 0-7.1 3.2-7.1 7.1s3.2 7.1 7.1 7.1c3.9 0 7.1-3.2 7.1-7.1 0-1.2-.3-2.4-.9-3.4-.2-.4 0-.9.4-1.1.4-.2.9 0 1.1.4.8 1.4 1.3 3.1 1.3 4.9 0 5.5-4.5 10-10 10z"></path> </svg> </button> </div> <script type="module">const e=document.getElementById("light-theme-btn"),t=document.getElementById("dark-theme-btn");function d(){const a=localStorage.getItem("theme");[e,t].forEach(r=>{r.classList.remove("bg-primary","text-white","dark:bg-dark-primary")}),a==="light"?e.classList.add("bg-primary","text-white","dark:bg-dark-primary"):t.classList.add("bg-primary","text-white","dark:bg-dark-primary")}function m(){localStorage.getItem("theme")==="dark"?(document.documentElement.classList.add("dark"),document.body.classList.remove("light-theme"),document.body.classList.add("dark-theme")):(document.documentElement.classList.remove("dark"),document.body.classList.remove("dark-theme"),document.body.classList.add("light-theme")),d()}d();e.addEventListener("click",()=>{localStorage.setItem("theme","light"),m()});t.addEventListener("click",()=>{localStorage.setItem("theme","dark"),m()});</script> </div>  <div class="relative text-textColor font-sans dark:text-dark-textColor min-h-screen" id="top"> <nav class="text-center py-4 pt-20 md:pt-4"> <div class="flex flex-col md:flex-row flex-wrap gap-4 md:gap-6 justify-center items-center text-sm"> <a href="#organizers" class="nav-link text-primary dark:text-white hover:text-primary/70 dark:hover:text-white/70 transition-colors duration-200 underline underline-offset-4 decoration-1 hover:decoration-2">
+Организаторы
+</a> <span class="text-primary/50 dark:text-white/30 hidden md:inline">•</span> <a href="#tastings" class="nav-link text-primary dark:text-white hover:text-primary/70 dark:hover:text-white/70 transition-colors duration-200 underline underline-offset-4 decoration-1 hover:decoration-2">
+Расписание встреч
+</a> </div> </nav> <script type="module">document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".nav-link").forEach(o=>{o.addEventListener("click",function(t){t.preventDefault();const e=t.target.getAttribute("href");if(e){const n=document.querySelector(e);n&&n.scrollIntoView({behavior:"smooth",block:"start"})}})})});</script> <main class="max-w-4xl mx-auto p-4"> <header class="text-left"> <div class="bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 rounded-xl p-8"> <h1 class="font-serif text-4xl text-primary dark:text-white mb-4">
+Клуб винных встреч "Bourgondier Weekly"
+</h1> <p class="text-sm mb-8 leading-relaxed">
+Слово "bourgondier" на нидерландском означает любителя жизни. Мы
+            решили, что нет лучше названия для еженедельного клуба любителей
+            вина.
+</p> <p class="text-sm leading-relaxed">
+Мы собираем клуб единомышленников, интересующихся вином и всем, что
+            с ним связано. Это не курсы, не мастер-классы, и уж тем более не
+            винное образование. Это повод для регулярного общения и обмена
+            знаниями: как выбирать вино, как его понимать, где покупать и
+            хранить, и как получать от него максимум удовольствия.
+</p> </div> </header> <section class="mt-8"> <div class="bg-gradient-to-r from-white-20 to-pink-50 dark:from-black-20 dark:to-gray-700 rounded-lg p-8 text-center"> <img src="/cta.webp" alt="Call to action image" class="mx-auto mb-6 max-w-md w-full h-auto rounded-lg"> <p class="text-md leading-relaxed text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-8">
+Наши встречи проходят каждую <b>пятницу</b> в центре Амстердама, с <b>18:30 до 20:00</b>. Мы подготовим 5-7 вин, специально подобранных под тематику
+            вечера. Каждая встреча принесет новые знания, общение и новые
+            знакомства. Специальная цена для членов клуба - €69/месяц (4
+            встречи). Вы также можете попасть на одну встречу за €25. Ну и
+            конечно же, часть нашего сообщества – чат для винного трындежа,
+            потому что чатов не бывает слишком много.
+</p> <p class="mb-8"> <a href="https://buy.stripe.com/fZudRa5RFbzybFy3Gnes000" class="bg-primary text-sm text-white py-3 px-4 rounded-lg hover:bg-red-700 dark:bg-dark-primary dark:hover:bg-red-500 transition-colors mb-8"> <nobr>Присоединиться к клубу за €69/месяц 🍷</nobr> </a> </p> <p> <button id="book-tasting-btn" class="bg-primary text-white text-sm py-3 px-4 rounded-lg hover:bg-red-700 dark:bg-dark-primary dark:hover:bg-red-500 transition-colors"> <nobr>Сходить на одну встречу за €25 🍷</nobr> </button> </p> </div> </section> <script type="module">document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("book-tasting-btn");e.addEventListener("click",async()=>{e.disabled=!0,e.textContent="Обработка...";try{const t=await(await fetch("/api/create-checkout",{method:"POST",headers:{"Content-Type":"application/json"}})).json();if(t.url)window.location.href=t.url;else throw new Error(t.error||"Failed to create checkout session")}catch(o){console.error("Checkout error:",o),alert("Произошла ошибка. Попробуйте снова."),e.disabled=!1,e.innerHTML="<nobr>Сходить на одну встречу за €25 🍷</nobr>"}})});</script> <section id="organizers" class="py-8"> <div class="bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 rounded-xl p-8"> <h2 class="font-serif text-2xl text-primary dark:text-white mb-4">
+Организаторы
+</h2> <div class="grid md:grid-cols-2 gap-12"> <div class="text-left"> <img src="/AK.webp" alt="Арсений" class="h-96 object-cover rounded-lg mb-4"> <h3 class="font-serif text-2xl mb-2 dark:text-white">
+Арсений
+</h3> <p class="text-sm leading-relaxed mb-4">
+Как будто бы айтишник. Когда-то резидент "Мишка-бара" в
+                    Петербурге. Лет 10 назад, уже в Амстердаме, полюбил вино и
+                    велосипед. Как оказалось, в винных регионах очень классно
+                    кататься, так что теперь в путешествия я беру с собой
+                    велосипед, а обратно везу ящики с вином.
+</p> <p class="text-sm leading-relaxed mb-4">
+Я знаю, что искать на аукционах, а что - у Нидерландских
+                    винных импортеров. Расскажу, как обходиться без винного
+                    образования и все равно получать удовольствие от вина. Когда
+                    один винодел решил, что я работаю в винной индустрии, я был
+                    вынужден его поправить: я работаю на винную индустрию.
+</p> <p class="text-sm leading-relaxed">
+Подписывайтесь и пишите: <a href="https://instagram.com/krbchnk" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-pink-500 transition-colors" aria-label="Instagram профиль Арсения">
+@krbchnk в Instagram
+</a> </p> </div> <div class="text-left"> <img src="/KK.webp" alt="Ксения" class="h-96 object-cover rounded-lg mb-4"> <h3 class="font-serif text-2xl mb-2 dark:text-white">Ксения</h3> <p class="text-sm leading-relaxed mb-4">
+Специалист по сложным материям и красоте, снаружи и внутри.
+                    Алконутрициолог – обязательно обсудим, как пить вино и
+                    худеть. Умею сочетать любовь к вину и путешествиям. Однажды
+                    за один день попробовала 50 вин, не нарушив ни одного
+                    правила дорожного движения.
+</p> <p class="text-sm leading-relaxed">
+Могу придумать винный pairing для чего угодно, найти
+                    беспроигрышный вариант в любой винной карте, и поделиться
+                    гастрономическими секретами, с которыми привычные продукты
+                    из AH за углом заиграют новыми красками.
+</p> </div> </div> </div> </section> <section id="tastings" class="pt-16"> <div class="bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 rounded-xl p-8"> <h2 class="font-serif text-3xl text-primary dark:text-white mb-8">
+Октябрь – Декабрь 2025 года
+</h2> <div class="space-y-8 text-sm leading-relaxed"> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">3 октября 2025</div> <div class="md:col-span-2"> <b>Благородные сорта винограда</b>: каберне совиньон, пино
+                    нуар, мерло, шардоне, совиньон блан и рислинг. Что делает их
+                    «благородными»? Характерные ноты, типичная география и
+                    винификация.
+</div> </div> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">10 октября 2025</div> <div class="md:col-span-2"> <b>Вино на полке.</b> Как читать бутылку: хорошие и плохие этикетки,
+                    география, год урожая, контрэтикетки.
+</div> </div> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">17 октября 2025</div> <div class="md:col-span-2"> <b>А как там у профи?</b> Как сомелье и винные критики пробуют
+                    вино. Что может сказать окрашенность и насыщенность? А запах?
+                    Почему вино требует терпения?
+</div> </div> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">24 октября 2025</div> <div class="md:col-span-2"> <b>Что такое "хорошее" вино?</b> Как работают винные критики,
+                    как устроены винные рейтинги, как отличить дорогое вино от дешевого,
+                    а самое главное, хорошее от плохого.
+</div> </div> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">31 октября 2025</div> <div class="md:col-span-2"> <b>Шардоне от Аргентины до Германии</b>. Как терруар влияет
+                    на вкус одного и того же сорта винограда. Как понять, чего
+                    ожидать от вина в зависимости от региона. Дуб – зачем и
+                    почему?
+</div> </div> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">7 ноября 2025</div> <div class="md:col-span-2"> <b>Винные регионы</b>: Континенты, страны, регионы, деревни,
+                    грядки.
+</div> </div> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">14 ноября 2025</div> <div class="md:col-span-2"> <b>Бордо</b>: Молодые вина против старых. Как вино
+                    взрослеет, как его хранить и когда пить?
+</div> </div> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">21 ноября 2025</div> <div class="md:col-span-2"> <b>Пино нуар, он же наш друг "пиныч"</b>. Не зря ли его
+                    именуют королем сортов винограда? Германия, Бургундия, Напа,
+                    Новая Зеландия.
+</div> </div> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">28 ноября 2025</div> <div class="md:col-span-2"> <b>Италия vs Франция</b>. Непримиримые друзья и закадычные
+                    соперники: Бургундия vs Пьемонт.
+</div> </div> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">5 декабря 2025</div> <div class="md:col-span-2"> <b>Испания</b>: от кавы до Риохи.
+</div> </div> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">12 декабря 2025</div> <div class="md:col-span-2"> <b>Южная Африка</b>. Cтарый Cвет в новом свете.
+</div> </div> <div class="grid md:grid-cols-3 gap-4 items-center"> <div class="md:col-span-1 font-bold">19 декабря 2025</div> <div class="md:col-span-2"> <b>Предрожденственская встреча bubbles edition</b>.
+                    Просекко, Кава, Шампанское.
+</div> </div> </div> </div> <p class="text-sm my-4 p-6">
+С вопросами и предложениями можно писать <a class="text-primary underline" href="https://t.me/leshakostin">Алексею Костину в Телеграм</a>.
+</p> </section> <!-- <section id="signup" class="mt-12">
+                <JoinClubFormStatic />
+            </section> --> </main> </div>  </body></html>
