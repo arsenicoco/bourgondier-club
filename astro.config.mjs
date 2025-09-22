@@ -6,10 +6,8 @@ import vercel from "@astrojs/vercel";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind()],
-  output: "server",
-  adapter: vercel({
-    edgeMiddleware: true
-  }),
+  output: "static",
+  adapter: vercel(),
   site: "https://club.bourgondier.wine",
   base: "/",
 });

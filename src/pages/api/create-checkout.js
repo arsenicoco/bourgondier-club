@@ -1,37 +1,40 @@
-import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
-
-export const prerender = false;
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY, {
   apiVersion: '2024-12-18.acacia',
 });
 
-export const POST: APIRoute = async ({ request }) => {
+export async function POST({ request }) {
+
   try {
     // Load available dates from the dates.json file
     const datesResponse = await fetch(`${import.meta.env.SITE_URL}/dates.json`);
     const datesData = await datesResponse.json();
     
-    // Format dates for Stripe dropdown options (English)
-    const dateOptions = datesData.dates.map((date: string, index: number) => {
+    // Format dates for Stripe dropdown options (Russian)
+    const dateOptions = datesData.dates.map((date, index) => {
       const dateObj = new Date(date);
-      const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      };
-      const formattedDate = dateObj.toLocaleDateString('en-US', options);
+      const months = [
+        'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+        'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+      ];
+      const weekdays = [
+        'воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'
+      ];
+      
+      const weekday = weekdays[dateObj.getDay()];
+      const day = dateObj.getDate();
+      const month = months[dateObj.getMonth()];
+      const year = dateObj.getFullYear();
       
       return {
-        label: formattedDate,
+        label: `${weekday}, ${day} ${month} ${year}`,
         value: `date${index}` // Use alphanumeric value
       };
     });
 
     // Create date mapping for metadata
-    const dateMapping = datesData.dates.reduce((acc: any, date: string, index: number) => {
+    const dateMapping = datesData.dates.reduce((acc, date, index) => {
       acc[`date${index}`] = date;
       return acc;
     }, {});
@@ -52,8 +55,8 @@ export const POST: APIRoute = async ({ request }) => {
         },
       ],
       mode: 'payment',
-      success_url: `${import.meta.env.SITE_URL}/en/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${import.meta.env.SITE_URL}/en/`,
+      success_url: `${import.meta.env.SITE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${import.meta.env.SITE_URL}/`,
       metadata: {
         date_mapping: JSON.stringify(dateMapping)
       },
@@ -62,7 +65,7 @@ export const POST: APIRoute = async ({ request }) => {
           key: 'tasting_date',
           label: {
             type: 'custom',
-            custom: 'Select tasting date'
+            custom: 'Выберите дату дегустации'
           },
           type: 'dropdown',
           dropdown: {
@@ -83,4 +86,4 @@ export const POST: APIRoute = async ({ request }) => {
       headers: { 'Content-Type': 'application/json' },
     });
   }
-};
+}

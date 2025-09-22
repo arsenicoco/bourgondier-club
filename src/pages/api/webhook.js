@@ -1,21 +1,21 @@
-import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
-
-export const prerender = false;
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY, {
   apiVersion: '2024-12-18.acacia',
 });
 
-export const POST: APIRoute = async ({ request }) => {
+export async function POST({ request }) {
   const body = await request.text();
   const signature = request.headers.get('stripe-signature');
 
   if (!signature) {
-    return new Response('No signature', { status: 400 });
+    return new Response(JSON.stringify({ error: 'No signature' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
-  let event: Stripe.Event;
+  let event;
 
   try {
     event = stripe.webhooks.constructEvent(
@@ -25,11 +25,14 @@ export const POST: APIRoute = async ({ request }) => {
     );
   } catch (err) {
     console.error('Webhook signature verification failed:', err);
-    return new Response('Webhook signature verification failed', { status: 400 });
+    return new Response(JSON.stringify({ error: 'Webhook signature verification failed' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   if (event.type === 'checkout.session.completed') {
-    const session = event.data.object as Stripe.Checkout.Session;
+    const session = event.data.object;
     
     // Get the custom field value
     const tastingDateKey = session.custom_fields?.find(
@@ -53,5 +56,8 @@ export const POST: APIRoute = async ({ request }) => {
     }
   }
 
-  return new Response('OK', { status: 200 });
-};
+  return new Response(JSON.stringify({ received: true }), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}

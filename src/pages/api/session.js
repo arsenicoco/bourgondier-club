@@ -1,13 +1,10 @@
-import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
-
-export const prerender = false;
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY, {
   apiVersion: '2024-12-18.acacia',
 });
 
-export const GET: APIRoute = async ({ url }) => {
+export async function GET({ url }) {
   const sessionId = url.searchParams.get('session_id');
 
   if (!sessionId) {
@@ -48,4 +45,4 @@ export const GET: APIRoute = async ({ url }) => {
       headers: { 'Content-Type': 'application/json' },
     });
   }
-};
+}
