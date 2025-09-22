@@ -27,11 +27,46 @@
             </a>
         </p>
         <p>
-            <a
-                href="https://buy.stripe.com/7sY14oeobeLK39290Hes001"
+            <button
+                id="book-tasting-btn"
                 class="bg-primary text-white text-sm py-3 px-4 rounded-lg hover:bg-red-700 dark:bg-dark-primary dark:hover:bg-red-500 transition-colors"
-                ><nobr>Attend one meeting for €25 🍷</nobr></a
             >
+                <nobr>Attend one meeting for €25 🍷</nobr>
+            </button>
         </p>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const bookButton = document.getElementById('book-tasting-btn') as HTMLButtonElement;
+
+    // Handle booking
+    bookButton.addEventListener('click', async () => {
+        bookButton.disabled = true;
+        bookButton.textContent = 'Processing...';
+
+        try {
+            const response = await fetch('/api/create-checkout-en', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            const data = await response.json();
+
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                throw new Error(data.error || 'Failed to create checkout session');
+            }
+        } catch (error) {
+            console.error('Checkout error:', error);
+            alert('An error occurred. Please try again.');
+            bookButton.disabled = false;
+            bookButton.innerHTML = '<nobr>Attend one meeting for €25 🍷</nobr>';
+        }
+    });
+});
+</script>
