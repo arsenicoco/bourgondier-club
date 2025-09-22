@@ -15,6 +15,13 @@ export const POST: APIRoute = async ({ request }) => {
         "2025-10-17",
         "2025-10-24",
         "2025-10-31",
+        "2025-11-07",
+        "2025-11-14",
+        "2025-11-21",
+        "2025-11-28",
+        "2025-12-05",
+        "2025-12-12",
+        "2025-12-19",
       ],
     };
 
@@ -57,10 +64,13 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     // Create date mapping for metadata
-    const dateMapping = datesData.dates.reduce((acc: Record<string, string>, date, index) => {
-      acc[`date${index}`] = date;
-      return acc;
-    }, {});
+    const dateMapping = datesData.dates.reduce(
+      (acc: Record<string, string>, date, index) => {
+        acc[`date${index}`] = date;
+        return acc;
+      },
+      {},
+    );
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
