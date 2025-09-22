@@ -10,10 +10,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Load available dates from the dates.json file
-    const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : process.env.SITE_URL || 'https://club.bourgondier.wine';
-    const datesResponse = await fetch(`${baseUrl}/dates.json`);
-    const datesData = await datesResponse.json();
+    // Available dates for wine tastings
+    const datesData = {
+      "dates": ["2025-10-03", "2025-10-10"]
+    };
     
     // Format dates for Stripe dropdown options (English)
     const dateOptions = datesData.dates.map((date, index) => {
@@ -54,8 +54,8 @@ export default async function handler(req, res) {
         },
       ],
       mode: 'payment',
-      success_url: `${baseUrl}/en/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${baseUrl}/en/`,
+      success_url: `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://club.bourgondier.wine'}/en/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://club.bourgondier.wine'}/en/`,
       metadata: {
         date_mapping: JSON.stringify(dateMapping)
       },
