@@ -11,7 +11,8 @@ export default async function handler(req, res) {
 
   try {
     // Load available dates from the dates.json file
-    const datesResponse = await fetch(`${process.env.SITE_URL}/dates.json`);
+    const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : process.env.SITE_URL || 'https://club.bourgondier.wine';
+    const datesResponse = await fetch(`${baseUrl}/dates.json`);
     const datesData = await datesResponse.json();
     
     // Format dates for Stripe dropdown options (English)
@@ -53,8 +54,8 @@ export default async function handler(req, res) {
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.SITE_URL}/en/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.SITE_URL}/en/`,
+      success_url: `${baseUrl}/en/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/en/`,
       metadata: {
         date_mapping: JSON.stringify(dateMapping)
       },
