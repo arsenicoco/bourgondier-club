@@ -1,7 +1,7 @@
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2024-12-18.acacia',
+  apiVersion: '2025-08-27.basil',
 });
 
 export default async function handler(req, res) {
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   try {
     // Available dates for wine tastings
     const datesData = {
-      "dates": ["2025-10-03", "2025-10-10"]
+      "dates": ["2025-10-03", "2025-10-10", "2025-10-17", "2025-10-24", "2025-10-31"]
     };
     
     // Format dates for Stripe dropdown options (Russian)

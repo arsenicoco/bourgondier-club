@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import Stripe from "stripe";
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2024-12-18.acacia",
+  apiVersion: "2025-08-27.basil",
 });
 
 export const POST: APIRoute = async ({ request }) => {
@@ -57,7 +57,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     // Create date mapping for metadata
-    const dateMapping = datesData.dates.reduce((acc, date, index) => {
+    const dateMapping = datesData.dates.reduce((acc: Record<string, string>, date, index) => {
       acc[`date${index}`] = date;
       return acc;
     }, {});
