@@ -10,7 +10,6 @@ export const POST: APIRoute = async ({ request }) => {
     // Available dates for wine tastings
     const datesData = {
       dates: [
-        "2025-10-03",
         "2025-10-10",
         "2025-10-17",
         "2025-10-24",
