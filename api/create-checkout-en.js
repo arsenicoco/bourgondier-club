@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     const datesData = {
       dates: [
         // "2025-10-03",
-        "2025-10-10",
+        // "2025-10-10",
         "2025-10-17",
         "2025-10-24",
         "2025-10-31",

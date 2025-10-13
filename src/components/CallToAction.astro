@@ -12,25 +12,25 @@
         >
             Наши встречи проходят каждую <b>пятницу</b> в центре Амстердама, с <b
                 >18:30 до 20:00</b
-            >. Мы подготовим 5-7 вин, специально подобранных под тематику
-            вечера. Каждая встреча принесет новые знания, общение и новые
+            >. Мы тщательно выбираем 5-7 вин под тематику вечера, рассказываем
+            что-то о каждой бутылке, общаемся, помогаем завести новые
             знакомства. Специальная цена для членов клуба - €69/месяц (4
             встречи). Вы также можете попасть на одну встречу за €25. Ну и
-            конечно же, часть нашего сообщества – чат для винного трындежа,
-            потому что чатов не бывает слишком много.
+            конечно же, часть нашего сообщества – закрытый чат с объявлениями о
+            винных мероприятиях в Нидерландах и винными находками.
         </p>
-        <p class="mb-8">
+        <p class="mb-8 center">
             <a
                 href="https://buy.stripe.com/fZudRa5RFbzybFy3Gnes000"
-                class="bg-primary text-sm text-white py-3 px-4 rounded-lg hover:bg-red-700 dark:bg-dark-primary dark:hover:bg-red-500 transition-colors mb-8"
+                class="bg-primary text-sm text-white py-3 px-4 rounded-lg hover:bg-red-700 dark:bg-dark-primary dark:hover:bg-red-500 transition-colors mb-8 mx-auto"
             >
-                <nobr>Присоединиться к клубу за €69/месяц 🍷</nobr>
+                <nobr>Присоединиться к клубу 🍷</nobr>
             </a>
         </p>
-        <p>
+        <p class="px-auto">
             <button
                 id="book-tasting-btn"
-                class="bg-primary text-white text-sm py-3 px-4 rounded-lg hover:bg-red-700 dark:bg-dark-primary dark:hover:bg-red-500 transition-colors"
+                class="bg-primary text-white text-sm py-3 px-4 rounded-lg hover:bg-red-700 dark:bg-dark-primary dark:hover:bg-red-500 transition-colors mx-auto"
             >
                 <nobr>Сходить на одну встречу за €25 🍷</nobr>
             </button>
@@ -39,35 +39,40 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const bookButton = document.getElementById('book-tasting-btn') as HTMLButtonElement;
+    document.addEventListener("DOMContentLoaded", () => {
+        const bookButton = document.getElementById(
+            "book-tasting-btn",
+        ) as HTMLButtonElement;
 
-    // Handle booking
-    bookButton.addEventListener('click', async () => {
-        bookButton.disabled = true;
-        bookButton.textContent = 'Обработка...';
+        // Handle booking
+        bookButton.addEventListener("click", async () => {
+            bookButton.disabled = true;
+            bookButton.textContent = "Обработка...";
 
-        try {
-            const response = await fetch('/api/create-checkout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
+            try {
+                const response = await fetch("/api/create-checkout", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                const data = await response.json();
+
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    throw new Error(
+                        data.error || "Failed to create checkout session",
+                    );
                 }
-            });
-
-            const data = await response.json();
-
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                throw new Error(data.error || 'Failed to create checkout session');
+            } catch (error) {
+                console.error("Checkout error:", error);
+                alert("Произошла ошибка. Попробуйте снова.");
+                bookButton.disabled = false;
+                bookButton.innerHTML =
+                    "<nobr>Сходить на одну встречу за €25 🍷</nobr>";
             }
-        } catch (error) {
-            console.error('Checkout error:', error);
-            alert('Произошла ошибка. Попробуйте снова.');
-            bookButton.disabled = false;
-            bookButton.innerHTML = '<nobr>Сходить на одну встречу за €25 🍷</nobr>';
-        }
+        });
     });
-});
 </script>
