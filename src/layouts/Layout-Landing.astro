@@ -1,0 +1,125 @@
+---
+import "../styles/tailwind.css";
+---
+
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Favicon -->
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="/android-chrome-512x512.png"
+        />
+        <meta name="generator" content={Astro.generator} />
+
+        <!-- SEO Meta Tags -->
+        <title>
+            Celebrate Beaujolais Nouveau with Bourgondier Weekly! 🍷🎉
+        </title>
+        <meta
+            name="description"
+            content="Celebrate Beaujolais Nouveau with Bourgondier Weekly! 🍷🎉"
+        />
+        <meta
+            name="keywords"
+            content="wine, club, Amsterdam, wine events, sommelier, wine culture, Beaujolais Nouveau, wine tasting, wine appreciation"
+        />
+        <meta name="author" content="Bourgondier Weekly" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://club.bourgondier.wine/" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://club.bourgondier.wine/" />
+        <meta
+            property="og:title"
+            content="Celebrate Beaujolais Nouveau with Bourgondier Weekly!"
+        />
+        <meta
+            property="og:description"
+            content="Celebrate Beaujolais Nouveau with Bourgondier Weekly! 🍷🎉 Join us for a fun-filled wine tasting event in Amsterdam!"
+        />
+        <meta
+            property="og:image"
+            content="https://club.bourgondier.wine/og-image.jpg"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="Bourgondier Weekly" />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://club.bourgondier.wine/" />
+        <meta
+            name="twitter:title"
+            content="Celebrate Beaujolais Nouveau with Bourgondier Weekly! 🍷🎉 Join us for a fun-filled wine tasting event in Amsterdam!"
+        />
+        <meta
+            name="twitter:description"
+            content="Beajolais Nouveau is here! Join us for a fun-filled wine tasting event in Amsterdam!"
+        />
+        <meta
+            name="twitter:image"
+            content="https://club.bourgondier.wine/og-image.jpg"
+        />
+
+        <!-- Additional SEO -->
+        <meta name="theme-color" content="#722F37" />
+        <meta name="application-name" content="Bourgondier Weekly" />
+        <meta name="apple-mobile-web-app-title" content="Bourgondier Weekly" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+        <!-- Geo tags -->
+        <meta name="geo.region" content="NL-NH" />
+        <meta name="geo.placename" content="Amsterdam" />
+        <meta name="geo.position" content="52.3676;4.9041" />
+        <meta name="ICBM" content="52.3676, 4.9041" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Noto+Serif+Display&display=swap"
+            rel="stylesheet"
+        />
+        <style is:global>
+            body {
+                background-color: #f8f8f8;
+                background: linear-gradient(
+                    135deg,
+                    #f8f8f8 0%,
+                    #f5e8e8 50%,
+                    #f0d8d8 100%
+                );
+            }
+        </style>
+    </head>
+    <body class="min-h-screen">
+        <slot />
+    </body>
+</html>
