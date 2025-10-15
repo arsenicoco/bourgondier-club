@@ -1,0 +1,51 @@
+---
+import LayoutLanding from "../layouts/Layout-Landing.astro";
+import Analytics from "@vercel/analytics/astro";
+---
+
+<LayoutLanding>
+    <Analytics />
+    <div
+        class="relative text-textColor font-sans dark:text-dark-textColor min-h-screen"
+        id="top"
+    >
+        <main class="max-w-4xl mx-auto p-4">
+            <div class="text-center">
+                <h1
+                    class="font-serif font-black text-4xl text-primary dark:text-white mt-8 mb-1"
+                >
+                    Come taste winter wines
+                </h1>
+                <h2 class="text-lg">with</h2>
+                <h2 class="text-2xl font-black">Bourgondier Wine Club!</h2>
+            </div>
+            <p class="my-8">
+                On December 4th come taste winter wines: big oaky whites and
+                bold reds to make you feel warm.
+            </p>
+            <p class="my-8">
+                Imagine you’re cozying up under a warm blanket in anticipation
+                of a new season of your favorite TV show. Would you choose a
+                glass of a hearty oaky white, or maybe a big loud red to go with
+                a steamy stew? Either way, we got you covered in our tasting.
+            </p>
+            <img
+                src="/winter.webp"
+                alt="Winter Wine Tasting"
+                class="mx-auto my-8 w-1/1"
+            />
+
+            <p class="my-8 text-lg">
+                The tasting will take place on December 4th from 18:30 till
+                20:00. <br /> Tickets: €40 per person.
+            </p>
+            <p class="my-8 text-lg">
+                We will taste two winter whites and three reds to warm up your
+                mood and comfy your winter nights. Expect a tropical Chardonnay,
+                a white Rhone blend, a light red from not-so-far-away, a
+                characteristic Bordeaux blend, and a big bold Italian.
+            </p>
+            <p class="my-8">You can signup online.</p>
+        </main>
+    </div>
+</LayoutLanding>
