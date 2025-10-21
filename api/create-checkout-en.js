@@ -69,6 +69,7 @@ export default async function handler(req, res) {
       mode: "payment",
       success_url: `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://club.bourgondier.wine"}/en/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://club.bourgondier.wine"}/en/`,
+      allow_promotion_codes: true,
       metadata: {
         date_mapping: JSON.stringify(dateMapping),
       },

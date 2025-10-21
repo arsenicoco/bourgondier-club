@@ -69,6 +69,7 @@ export const POST: APIRoute = async ({ request }) => {
       mode: "payment",
       success_url: `${import.meta.env.SITE_URL || "http://localhost:4321"}/en/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${import.meta.env.SITE_URL || "http://localhost:4321"}/en/`,
+      allow_promotion_codes: true,
       metadata: {
         date_mapping: JSON.stringify(dateMapping),
       },
