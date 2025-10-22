@@ -55,14 +55,8 @@ export const POST: APIRoute = async ({ request }) => {
       payment_method_types: ["card"],
       line_items: [
         {
-          price_data: {
-            currency: "eur",
-            product_data: {
-              name: "Wine Tasting - One-off Session",
-              description: "Individual wine tasting session in Amsterdam",
-            },
-            unit_amount: 2500, // €25.00 in cents
-          },
+          price:
+            import.meta.env.STRIPE_PRICE_ID || "price_1S7bMoL96pJGVWPvjOoYrlih", // Use existing price ID from Stripe dashboard
           quantity: 1,
         },
       ],
