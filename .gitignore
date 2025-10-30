@@ -30,3 +30,6 @@ src/data/
 *.db
 *.sqlite
 *.sqlite3
+
+#ai stuff
+.qwen/
